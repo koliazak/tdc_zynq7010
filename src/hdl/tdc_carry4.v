@@ -6,13 +6,14 @@ module tdc_carry4 #(
     input  wire                       clk,
     input  wire                       start,
     input  wire                       stop,
-    output reg  [(LEVEL_COUNT*4)-1:0] tdc_data_out    
+    output reg  [(LEVEL_COUNT*4)-1:0] tdc_data_out
 );
 
-    wire [(LEVEL_COUNT*4)-1:0] carry_out;
-    wire [(LEVEL_COUNT*4)-1:0] carry_data_out;
-   (* KEEP = "TRUE", ASYNC_REG = "TRUE", SHREG_EXTRACT = "NO" *) reg  [(LEVEL_COUNT*4)-1:0] sample_reg;
+    (* KEEP = "TRUE", ASYNC_REG = "TRUE", SHREG_EXTRACT = "NO" *) 
+    reg  [(LEVEL_COUNT*4)-1:0] sample_reg;
 
+    wire [(LEVEL_COUNT*4)-1:0] carry_data_out;
+    wire  [(LEVEL_COUNT*4)-1:0] carry_out;
     wire [LEVEL_COUNT-1:0] cyinit;
     wire [LEVEL_COUNT-1:0] ci;
     wire [3:0] s_inputs [LEVEL_COUNT-1:0];
