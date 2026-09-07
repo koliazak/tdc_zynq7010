@@ -29,24 +29,61 @@ module top(
     // ================ TDC =================   
     
     (* DONT_TOUCH = "TRUE" *) 
-    wire [(32*4)-1:0] tdc_data_out;
+    wire [(32*4)-1:0] tdc_data_out_0;
+    (* DONT_TOUCH = "TRUE" *) 
+    wire [(32*4)-1:0] tdc_data_out_1;
+    (* DONT_TOUCH = "TRUE" *) 
+    wire [(32*4)-1:0] tdc_data_out_2;
+    (* DONT_TOUCH = "TRUE" *) 
+    wire [(32*4)-1:0] tdc_data_out_3;
+
     
     tdc_carry4 #(
         .LEVEL_COUNT(32)
-    ) tdc_inst (
+    ) tdc_inst_0 (
         .clk(clk_in),
         .start(start),
         .stop(stop),
-        .tdc_data_out(tdc_data_out)
+        .tdc_data_out(tdc_data_out_0)
     );
-  
+          
+    tdc_carry4 #(
+        .LEVEL_COUNT(32)
+    ) tdc_inst_1 (
+        .clk(clk_in),
+        .start(start),
+        .stop(stop),
+        .tdc_data_out(tdc_data_out_1)
+    );
+    
+    tdc_carry4 #(
+        .LEVEL_COUNT(32)
+    ) tdc_inst_2 (
+        .clk(clk_in),
+        .start(start),
+        .stop(stop),
+        .tdc_data_out(tdc_data_out_2)
+    );
+            
+    tdc_carry4 #(
+        .LEVEL_COUNT(32)
+    ) tdc_inst_3 (
+        .clk(clk_in),
+        .start(start),
+        .stop(stop),
+        .tdc_data_out(tdc_data_out_3)
+    );
+
 
     // ================ VIO =================    
     
     vio_0 vio_inst (
         .clk(clk_in),
-        .probe_in0(tdc_data_out[127:0]),
-        .probe_in1(psdone),
+        .probe_in0(tdc_data_out_0[127:0]),
+        .probe_in1(tdc_data_out_1[127:0]),
+        .probe_in2(tdc_data_out_2[127:0]),
+        .probe_in3(tdc_data_out_3[127:0]),
+        .probe_in4(psdone),
         .probe_out0(vio_psen),
         .probe_out1(vio_psincdec)
     );
@@ -56,10 +93,13 @@ module top(
 
     ila_0 ila_inst (
         .clk(clk_in),
-        .probe0(tdc_data_out),
-        .probe1(start),
-        .probe2(stop),
-        .probe3(psdone)
+        .probe0(tdc_data_out_0),
+        .probe1(tdc_data_out_1),
+        .probe2(tdc_data_out_2),
+        .probe3(tdc_data_out_3),
+        .probe4(start),
+        .probe5(stop),
+        .probe6(psdone)
     );
     
 endmodule

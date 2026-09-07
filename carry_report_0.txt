@@ -1,9 +1,9 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025
-| Date         : Wed Jul 15 17:33:15 2026
+| Date         : Mon Sep  7 12:41:57 2026
 | Host         : ideapad running 64-bit unknown
-| Command      : report_carry_chains -file carry_report.txt
+| Command      : report_carry_chains -cell [get_cells tdc_inst_0] -file carry_report_0.txt
 | Design       : top
 | Device       : xc7z010
 ---------------------------------------------------------------------------------------------------------------------------------------------
@@ -28,10 +28,10 @@ Table of Contents
 2. Utilization
 --------------
 
-+----------------------------+-----------------+--------------------------+
-| Starting Instance          | Height (Slices) | Carry Height Utilization |
-+----------------------------+-----------------+--------------------------+
-| tdc_inst/carry4_inst_first |              32 |                   32.00% |
-+----------------------------+-----------------+--------------------------+
++------------------------------+-----------------+--------------------------+
+| Starting Instance            | Height (Slices) | Carry Height Utilization |
++------------------------------+-----------------+--------------------------+
+| tdc_inst_0/carry4_inst_first |              32 |                   32.00% |
++------------------------------+-----------------+--------------------------+
 
 

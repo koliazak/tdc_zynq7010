@@ -1,8 +1,7 @@
+import sys
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-
-CSV_FILE = "tdc_data.csv"
 
 
 def load_data(csv_file):
@@ -151,7 +150,15 @@ def plot_characteristics(metrics, save_path=None):
 
 
 if __name__ == "__main__":
-    df_raw = load_data(CSV_FILE)
+    
+    if len(sys.argv) < 2:
+        print("usage: python tdc_metrics.py <path_to_csv_file>")
+        sys.exit(1)
+
+    csv_file = Path(sys.argv[1]).resolve()
+    print(f"Working with {csv_file}")
+    
+    df_raw = load_data(csv_file)
     print(f"Loaded {len(df_raw)} raw samples")
 
     df = aggregate_by_phase(df_raw)
